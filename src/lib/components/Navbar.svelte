@@ -1,4 +1,12 @@
 <script lang="ts">
+	
+	function getActiveColor(): string {
+		if (isActive('/')) return 'pink';
+		for (const { href, color } of links) {
+			if (isActive(href)) return color;
+		}
+		return 'pink';
+	}
 	import { page } from '$app/state';
 	import { House, BookOpen, ScrollText, Sparkles, LibraryBig } from 'lucide-svelte';
 
@@ -44,28 +52,28 @@
 	};
 </script>
 
-<nav class="top-0 z-50 relative mb-8 md:mb-0">
-	<div class="bg-mantle/60 backdrop-blur-2xl">
-		<div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-3.5">
-
-			<button
-				onclick={() => (menuOpen = !menuOpen)}
-				class="flex flex-col gap-1.5 rounded-xl p-2.5 text-pink/70 transition-all duration-300 hover:bg-pink/8 hover:text-pink md:hidden"
-				aria-label="Toggle menu"
-			>
-				<span
-					class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
-						{menuOpen ? 'translate-y-2 rotate-45' : ''}"
-				></span>
-				<span
-					class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
-						{menuOpen ? 'scale-0 opacity-0' : 'opacity-100'}"
-				></span>
-				<span
-					class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
-						{menuOpen ? '-translate-y-2 -rotate-45' : ''}"
-				></span>
-			</button>
+<nav class="relative top-0 z-50 mb-8 md:mb-0">
+	   <div class="bg-mantle/60 backdrop-blur-2xl">
+		   <div class="mx-auto flex max-w-4xl items-center justify-between px-6 py-3.5">
+			   <button
+				   onclick={() => (menuOpen = !menuOpen)}
+				   class="flex flex-col gap-1.5 rounded-xl p-2.5 transition-all duration-300 md:hidden"
+				   aria-label="Toggle menu"
+				   style="color: var(--color-{getActiveColor()});"
+			   >
+				   <span
+					   class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
+						   {menuOpen ? 'translate-y-2 rotate-45' : ''}"
+				   ></span>
+				   <span
+					   class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
+						   {menuOpen ? 'scale-0 opacity-0' : 'opacity-100'}"
+				   ></span>
+				   <span
+					   class="block h-0.5 w-5 rounded-full bg-current transition-all duration-300
+						   {menuOpen ? '-translate-y-2 -rotate-45' : ''}"
+				   ></span>
+			   </button>
 
 			<div class="hidden md:flex md:flex-1 md:items-center">
 				<ul class="flex flex-1 justify-end gap-1">
@@ -75,9 +83,7 @@
 							<a
 								{href}
 								class="group relative flex items-center gap-2.5 rounded-xl px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300
-									{isActive(href)
-									? c.active
-									: `text-subtext0 ${c.hover}`}"
+									{isActive(href) ? c.active : `text-subtext0 ${c.hover}`}"
 							>
 								<Icon size={15} class="transition-transform duration-300 group-hover:scale-110" />
 								<span class="italic">{label}</span>
@@ -95,10 +101,13 @@
 					href="/"
 					class="group relative mx-6 flex items-center justify-center rounded-2xl p-3 transition-all duration-300
 						{isActive('/')
-						? 'bg-pink/12 text-pink shadow-lg shadow-pink/10 ring-1 ring-pink/25'
+						? 'bg-pink/12 text-pink shadow-lg ring-1 shadow-pink/10 ring-pink/25'
 						: 'text-subtext0 ring-1 ring-surface1/50 hover:bg-pink/8 hover:text-pink hover:ring-pink/20'}"
 				>
-					<House size={18} class="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-8deg]" />
+					<House
+						size={18}
+						class="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-8deg]"
+					/>
 					{#if isActive('/')}
 						<span
 							class="absolute -bottom-1.5 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-pink opacity-80"
@@ -113,9 +122,7 @@
 							<a
 								{href}
 								class="group relative flex items-center gap-2.5 rounded-xl px-4 py-2 text-sm font-medium tracking-wide transition-all duration-300
-									{isActive(href)
-									? c.active
-									: `text-subtext0 ${c.hover}`}"
+									{isActive(href) ? c.active : `text-subtext0 ${c.hover}`}"
 							>
 								<Icon size={15} class="transition-transform duration-300 group-hover:scale-110" />
 								<span class="italic">{label}</span>
@@ -133,53 +140,91 @@
 	</div>
 
 	{#if menuOpen}
-		<div class="border-t border-surface1/30 bg-mantle/95 backdrop-blur-2xl md:hidden">
-			<ul class="flex flex-col gap-1 px-4 py-3">
-				<li>
-					<a
-						href="/"
-						onclick={() => (menuOpen = false)}
-						class="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium tracking-wide transition-all duration-300
-							{isActive('/')
-							? 'bg-pink/12 text-pink shadow-md shadow-pink/8 ring-1 ring-pink/20'
-							: 'text-subtext0 hover:bg-pink/8 hover:text-pink'}"
-					>
-						<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-pink/8">
-							<House size={16} class="transition-transform duration-300 group-hover:scale-110" />
-						</div>
-						<span class="italic">Home</span>
-						{#if isActive('/')}
-							<span class="ml-auto text-[10px] tracking-wider text-pink/40">&#9679;</span>
-						{/if}
-					</a>
-				</li>
-				{#each links as { href, label, icon: Icon, color }}
-					{@const c = colorMap[color]}
-					<li>
-						<a
-							{href}
-							onclick={() => (menuOpen = false)}
-							class="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium tracking-wide transition-all duration-300
-								{isActive(href)
-								? c.active
-								: `text-subtext0 ${c.hover}`}"
-						>
-							<div class="flex h-8 w-8 items-center justify-center rounded-lg {isActive(href) ? `bg-${color}/15` : 'bg-surface0/50'}">
-								<Icon size={16} class="transition-transform duration-300 group-hover:scale-110" />
-							</div>
-							<span class="italic">{label}</span>
-							{#if isActive(href)}
-								<span class="ml-auto text-[10px] tracking-wider {c.text}">&#9679;</span>
-							{/if}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</div>
+		   <div class="border-t border-surface1/30 bg-mantle/95 backdrop-blur-2xl md:hidden">
+			   <ul class="flex flex-col gap-1 px-4 py-3">
+				   <li>
+					   <a
+						   href="/"
+						   onclick={() => (menuOpen = false)}
+						   class="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium tracking-wide transition-all duration-300
+							   {isActive('/')
+							   ? 'bg-pink/12 text-pink shadow-md ring-1 shadow-pink/8 ring-pink/20'
+							   : 'text-subtext0 hover:bg-pink/8 hover:text-pink'}"
+					   >
+						   <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-pink/8">
+							   <House size={16} class="transition-transform duration-300 group-hover:scale-110" />
+						   </div>
+						   <span class="italic">Home</span>
+						   {#if isActive('/')}
+							   <span class="ml-auto text-[10px] tracking-wider text-pink/40">&#9679;</span>
+						   {/if}
+					   </a>
+				   </li>
+				   {#each links as { href, label, icon: Icon, color }}
+					   {@const c = colorMap[color]}
+					   <li>
+						   <a
+							   {href}
+							   onclick={() => (menuOpen = false)}
+							   class="group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium tracking-wide transition-all duration-300
+								   {isActive(href) ? c.active : `text-subtext0 ${c.hover}`}" 
+						   >
+							   <div
+								   class="flex h-8 w-8 items-center justify-center rounded-lg {isActive(href)
+									   ? `bg-${color}/15`
+									   : 'bg-surface0/50'}"
+							   >
+								   <Icon size={16} class="transition-transform duration-300 group-hover:scale-110" />
+							   </div>
+							   <span class="italic">{label}</span>
+							   {#if isActive(href)}
+								   <span class="ml-auto text-[10px] tracking-wider {c.text}">&#9679;</span>
+							   {/if}
+						   </a>
+					   </li>
+				   {/each}
+			   </ul>
+			   <!-- Mobile gradient underline -->
+			   <div class="relative mt-2">
+				   {#if getActiveColor() === 'pink'}
+					   <div class="h-px w-full bg-gradient-to-r from-transparent via-pink/60 to-transparent"></div>
+					   <div class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-pink/15 to-transparent blur-md"></div>
+				   {:else if getActiveColor() === 'flamingo'}
+					   <div class="h-px w-full bg-gradient-to-r from-transparent via-flamingo/60 to-transparent"></div>
+					   <div class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-flamingo/15 to-transparent blur-md"></div>
+				   {:else if getActiveColor() === 'mauve'}
+					   <div class="h-px w-full bg-gradient-to-r from-transparent via-mauve/60 to-transparent"></div>
+					   <div class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-mauve/15 to-transparent blur-md"></div>
+				   {:else if getActiveColor() === 'teal'}
+					   <div class="h-px w-full bg-gradient-to-r from-transparent via-teal/60 to-transparent"></div>
+					   <div class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-teal/15 to-transparent blur-md"></div>
+				   {/if}
+			   </div>
+		   </div>
 	{/if}
-
 	<div class="relative">
-		<div class="h-px w-full bg-linear-to-r from-transparent via-mauve/30 via-30% via-pink/50 via-50% via-flamingo/30 via-70% to-transparent"></div>
-		<div class="absolute inset-x-0 top-0 h-4 bg-linear-to-r from-transparent via-mauve/5 via-30% via-pink/8 via-50% via-flamingo/5 via-70% to-transparent blur-md"></div>
+		{#if getActiveColor() === 'pink'}
+			<div class="h-px w-full bg-gradient-to-r from-transparent via-pink/60 to-transparent"></div>
+			<div
+				class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-pink/15 to-transparent blur-md"
+			></div>
+		{:else if getActiveColor() === 'flamingo'}
+			<div
+				class="h-px w-full bg-gradient-to-r from-transparent via-flamingo/60 to-transparent"
+			></div>
+			<div
+				class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-flamingo/15 to-transparent blur-md"
+			></div>
+		{:else if getActiveColor() === 'mauve'}
+			<div class="h-px w-full bg-gradient-to-r from-transparent via-mauve/60 to-transparent"></div>
+			<div
+				class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-mauve/15 to-transparent blur-md"
+			></div>
+		{:else if getActiveColor() === 'teal'}
+			<div class="h-px w-full bg-gradient-to-r from-transparent via-teal/60 to-transparent"></div>
+			<div
+				class="absolute inset-x-0 top-0 h-4 bg-gradient-to-r from-transparent via-teal/15 to-transparent blur-md"
+			></div>
+		{/if}
 	</div>
 </nav>
