@@ -67,7 +67,6 @@
 				></span>
 			</button>
 
-			<!-- Desktop nav -->
 			<div class="hidden md:flex md:flex-1 md:items-center">
 				<ul class="flex flex-1 justify-end gap-1">
 					{#each links.slice(0, 2) as { href, label, icon: Icon, color }}
@@ -179,6 +178,8 @@
 		</div>
 	{/if}
 
-	<!-- Gradient underline -->
-	<div class="h-px w-full bg-linear-to-r from-transparent via-pink/25 to-transparent"></div>
+	<div class="relative">
+		<div class="h-px w-full bg-linear-to-r from-transparent via-mauve/30 via-30% via-pink/50 via-50% via-flamingo/30 via-70% to-transparent"></div>
+		<div class="absolute inset-x-0 top-0 h-4 bg-linear-to-r from-transparent via-mauve/5 via-30% via-pink/8 via-50% via-flamingo/5 via-70% to-transparent blur-md"></div>
+	</div>
 </nav>
