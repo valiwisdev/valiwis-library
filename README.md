@@ -14,6 +14,7 @@ A personal cozy digital library built with SvelteKit for tracking and organizing
 - [Vite](https://vitejs.dev/)
 - [pnpm](https://pnpm.io/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Drizzle](https://orm.drizzle.team/)
 
 ## Getting Started
 
