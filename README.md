@@ -1,42 +1,32 @@
-# sv
+# Valiwis's Library
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A personal digital library built with SvelteKit for tracking and organizing my reading collection — including books, manhwas, and manhuas.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Browse and manage a collection of books, manhwas, and manhuas
+- Organized categories with dedicated pages for each type
+- Clean, responsive UI
 
-```sh
-# create a new project
-npx sv create my-app
+## Tech Stack
+
+- [SvelteKit](https://kit.svelte.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [pnpm](https://pnpm.io/)
+- [Tailwind](https://tailwindcss.com/)
+
+## Getting Started
+
+```bash
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm dev
 ```
 
-To recreate this project with the same configuration:
+## Preview 
 
-```sh
-# recreate this project
-pnpm dlx sv create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography" sveltekit-adapter="adapter:vercel" --install pnpm my-favs
-```
+![alt text](/static/home.png)
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
