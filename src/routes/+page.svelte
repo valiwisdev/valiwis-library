@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BookOpen, ScrollText, Sparkles } from 'lucide-svelte';
+	import { BookOpen, ScrollText, Sparkles, LibraryBig } from 'lucide-svelte';
 </script>
 
 <svelte:head>
@@ -27,7 +27,7 @@
 		<span class="h-px w-12 bg-surface1"></span>
 	</div>
 
-	<div class="mt-6 grid gap-3 sm:grid-cols-3 md:mt-8 md:gap-4">
+	<div class="mt-6 grid gap-3 sm:grid-cols-2 md:mt-8 md:gap-4 lg:grid-cols-4">
 		<a
 			href="/books"
 			class="group rounded-2xl border border-pink/10 bg-mantle/60 px-8 py-6 backdrop-blur-sm transition-all duration-300 hover:border-pink/30 hover:bg-surface0/40 hover:shadow-lg hover:shadow-pink/5"
@@ -59,6 +59,17 @@
 			</div>
 			<p class="mt-2 font-medium italic text-text">Manhwas</p>
 			<p class="mt-1 text-xs text-subtext0">korean comics</p>
+		</a>
+
+		<a
+			href="/library"
+			class="group rounded-2xl border border-pink/10 bg-mantle/60 px-8 py-6 backdrop-blur-sm transition-all duration-300 hover:border-teal/30 hover:bg-surface0/40 hover:shadow-lg hover:shadow-teal/5"
+		>
+			<div class="flex justify-center text-teal transition-transform duration-300 group-hover:scale-110">
+				<LibraryBig size={28} />
+			</div>
+			<p class="mt-2 font-medium italic text-text">Library</p>
+			<p class="mt-1 text-xs text-subtext0">full collection</p>
 		</a>
 	</div>
 
