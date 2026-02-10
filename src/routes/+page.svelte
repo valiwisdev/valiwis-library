@@ -7,29 +7,26 @@
 </svelte:head>
 
 <main class="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center md:px-6">
-	<!-- Decorative sparkles -->
+	
 	<p class="mb-4 text-sm tracking-[0.3em] text-pink/40 md:text-lg">˚ ✧ ₊ ♡ ₊ ✧ ˚</p>
 
-	<!-- Title -->
 	<h1
 		class="text-3xl font-bold italic tracking-wide text-pink md:text-6xl"
 	>
 		Valiwis Library
 	</h1>
 
-	<!-- Subtitle -->
 	<p class="mt-3 max-w-md text-sm italic text-subtext0 md:mt-4 md:text-lg">
 		My cozy collection of books, manhuas, and manhwas. A personal haven for all my favorite reads.
 	</p>
 
-	<!-- Divider -->
+	
 	<div class="mt-8 flex items-center gap-3 text-overlay0">
 		<span class="h-px w-12 bg-surface1"></span>
 		<span class="text-xs tracking-widest text-pink/50">browse</span>
 		<span class="h-px w-12 bg-surface1"></span>
 	</div>
 
-	<!-- Category cards -->
 	<div class="mt-6 grid gap-3 sm:grid-cols-3 md:mt-8 md:gap-4">
 		<a
 			href="/books"
@@ -65,6 +62,5 @@
 		</a>
 	</div>
 
-	<!-- Footer sparkle -->
 	<p class="mt-12 text-xs tracking-[0.2em] text-overlay0/40">made with ♡</p>
 </main>
