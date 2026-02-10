@@ -1,12 +1,11 @@
 # Valiwis's Library
 
-A personal digital library built with SvelteKit for tracking and organizing my reading collection — including books, manhwas, and manhuas.
+A personal cozy digital library built with SvelteKit for tracking and organizing my reading collection — including books, manhwas, and manhuas.
 
 ## Features
 
 - Browse and manage a collection of books, manhwas, and manhuas
 - Organized categories with dedicated pages for each type
-- Clean, responsive UI
 
 ## Tech Stack
 
@@ -14,7 +13,7 @@ A personal digital library built with SvelteKit for tracking and organizing my r
 - [TypeScript](https://www.typescriptlang.org/)
 - [Vite](https://vitejs.dev/)
 - [pnpm](https://pnpm.io/)
-- [Tailwind](https://tailwindcss.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started
 
