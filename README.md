@@ -28,4 +28,4 @@ pnpm dev
 
 ## Preview 
 
-![alt text](/static/home.png)
+![alt text](/images/home.png)
