@@ -1,0 +1,28 @@
+services:
+    directus:
+        image: directus/directus:11.14.1
+        ports:
+            - 8055:8055
+        volumes:
+            - ./uploads:/directus/uploads
+            - ./extensions:/directus/extensions
+        environment:
+            SECRET: "your-secret-key"
+            DB_CLIENT: "postgres"
+            DB_HOST: ${DB_HOST}
+            DB_PORT: ${DB_PORT}
+            DB_USER: ${DB_USER}
+            DB_PASSWORD: ${DB_PASSWORD}
+            DB_NAME: ${DB_NAME}
+            WEBSOCKETS_ENABLED: "true"
+
+    postgres:
+        image: postgres:16-alpine
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: ${DB_USER}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_NAME}
+        volumes:
+            - ./postgres-data:/var/lib/postgresql/data

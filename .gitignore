@@ -1,0 +1,19 @@
+# --- svelte-app custom ignores ---
+/svelte-app/node_modules/
+/svelte-app/.svelte-kit/
+/svelte-app/.vite/
+/svelte-app/build/
+/svelte-app/dist/
+/svelte-app/.env
+/svelte-app/.env.*
+
+# package manager logs
+/svelte-app/npm-debug.log*
+/svelte-app/yarn-debug.log*
+/svelte-app/yarn-error.log*
+/svelte-app/pnpm-debug.log*
+
+# OS/editor junk (inside svelte-app)
+/svelte-app/.DS_Store
+/svelte-app/.idea/
+/svelte-app/.vscode/
