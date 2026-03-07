@@ -17,3 +17,8 @@
 /svelte-app/.DS_Store
 /svelte-app/.idea/
 /svelte-app/.vscode/
+
+# Environment variables
+.env
+.env.local
+
