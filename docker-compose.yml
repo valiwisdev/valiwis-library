@@ -42,7 +42,8 @@ services:
             POSTGRES_PASSWORD: ${DB_PASSWORD}
             POSTGRES_DB: ${DB_DATABASE}
         volumes:
-            - ./directus/postgres-data:/var/lib/postgresql/data
+            - postgres_data:/var/lib/postgresql/data
 
 volumes:
     svelte_node_modules:
+    postgres_data:
