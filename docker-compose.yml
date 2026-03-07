@@ -1,20 +1,37 @@
 services:
+    svelte-app:
+        build:
+            context: ./svelte-app
+            dockerfile: Dockerfile
+        ports:
+            - 5173:5173
+        volumes:
+            - ./svelte-app:/app
+            - svelte_node_modules:/app/node_modules
+        environment:
+            NODE_ENV: development
+            CHOKIDAR_USEPOLLING: "true"
+        depends_on:
+            - directus
+
     directus:
-        image: directus/directus:11.14.1
+        image: directus/directus:latest
         ports:
             - 8055:8055
+        depends_on:
+            - postgres
         volumes:
-            - ./uploads:/directus/uploads
-            - ./extensions:/directus/extensions
+            - ./directus/uploads:/directus/uploads
+            - ./directus/extensions:/directus/extensions
         environment:
-            SECRET: "your-secret-key"
-            DB_CLIENT: "postgres"
+            SECRET: ${DIRECTUS_SECRET}
+            DB_CLIENT: ${DB_CLIENT}
             DB_HOST: ${DB_HOST}
             DB_PORT: ${DB_PORT}
             DB_USER: ${DB_USER}
             DB_PASSWORD: ${DB_PASSWORD}
-            DB_NAME: ${DB_NAME}
-            WEBSOCKETS_ENABLED: "true"
+            DB_DATABASE: ${DB_DATABASE}
+            WEBSOCKETS_ENABLED: ${WEBSOCKETS_ENABLED}
 
     postgres:
         image: postgres:16-alpine
@@ -23,6 +40,9 @@ services:
         environment:
             POSTGRES_USER: ${DB_USER}
             POSTGRES_PASSWORD: ${DB_PASSWORD}
-            POSTGRES_DB: ${DB_NAME}
+            POSTGRES_DB: ${DB_DATABASE}
         volumes:
-            - ./postgres-data:/var/lib/postgresql/data
+            - ./directus/postgres-data:/var/lib/postgresql/data
+
+volumes:
+    svelte_node_modules:
