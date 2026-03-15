@@ -22,3 +22,9 @@
 .env
 .env.local
 
+# --- directus custom ignores ---
+/directus/node_modules/
+/directus/.env
+/directus/.env.*
+
+

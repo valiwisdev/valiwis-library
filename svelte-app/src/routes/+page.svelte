@@ -1,13 +1,18 @@
 <script lang="ts">
 	import { BookOpen, ScrollText, Sparkles, LibraryBig } from 'lucide-svelte';
+	import type { PageData } from './$types';
+  	export let data: PageData;
+	console.log(data);
 </script>
 
 <svelte:head>
-	<title>Valiwis Library</title>
+	<title>{data.global.title}</title>
+	<meta name="description" content={data.global.description} />
 </svelte:head>
 
 <main class="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center md:px-6">
 	<p class="mb-4 text-sm tracking-[0.3em] text-pink/40 md:text-lg">˚ ✧ ₊ ♡ ₊ ✧ ˚</p>
+
 
 	<h1 class="mb-2 text-4xl font-bold tracking-tight text-pink italic md:text-6xl">
 		Valiwis Library
