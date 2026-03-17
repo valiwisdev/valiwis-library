@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "collection:list": "node scripts/list-collection.ts",
+    "collection:create": "node scripts/create-collection.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "packageManager": "pnpm@10.30.3",
   "dependencies": {
     "@directus/sdk": "^21.2.0",
