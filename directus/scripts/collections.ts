@@ -169,26 +169,21 @@ async function promptUser() {
 
     switch (command) {
         case '1':
-        case 'list':
             printSectionHeader('Collections', chalk.cyanBright);
             await listCollections();
             break;
 
         case '2':
-        case 'create':
             printSectionHeader('Create Collection', chalk.green);
             await createNewCollection();
             break;
 
         case '3':
-        case 'delete':
             printSectionHeader('Delete Collection', chalk.red);
             await delCollection();
             break;
 
         case 'q':
-        case 'quit':
-        case 'exit':
             console.log(chalk.gray('\n  Goodbye.\n'));
             rl.close();
             process.exit(0);
