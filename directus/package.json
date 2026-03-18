@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "collections": "node scripts/collections.ts"
+    "collections": "node scripts/collections.ts",
+    "fields": "node scripts/fields.ts",
+    "files": "node scripts/files.ts"
   },
   "keywords": [],
   "author": "",
